@@ -1,10 +1,17 @@
-<from [formGroup] = "formGroup" (ngSubmit)="onSubmit(form)">
+<form [formGroup] = "formGroup" (ngSubmit)="onSubmit(formGroup )">
   <div>
     <input
     type="text" 
-    formControlName="firsName"
+    formControlName="firstName"
     placeholder="first name"
     >
+    <label style="color:chartreuse;"
+    *ngIf=
+    "formGroup.get('firstName').invalid &&
+    formGroup.get('firstName').touched &&
+    formGroup.get('firstName').errors['required']
+    ">Required.</label>
+  
   </div>
   <div>
   <input
@@ -12,7 +19,45 @@
   formControlName="lastName"
   placeholder="last name"
   >
+  <label style="color:chartreuse;"
+    *ngIf=
+    "formGroup.get('lastName').invalid &&
+    formGroup.get('lastName').touched &&
+    formGroup.get('lastName').errors['required']
+    ">Required.</label>
+   
+  </div>
+
+<div>
+  <input
+  type="text" 
+  formControlName="email"
+  placeholder="email"
+  >
+  <label style="color:chartreuse;"
+    *ngIf=
+    "formGroup.get('email').invalid &&
+    formGroup.get('email').touched &&
+    formGroup.get('email').errors['email']
+    ">e-mail is invalid.</label>
+ 
+</div>
+<div>
+  <input
+  type="number" 
+  formControlName="age"
+  placeholder="age"
+  max = 99
+  min = 0
+  >
+  <label style="color:chartreuse;"
+    *ngIf=
+    "formGroup.get('age').invalid &&
+    formGroup.get('age').touched &&
+    formGroup.get('age').errors['age']
+    ">Betweet is 0 and 99.</label>
+  
 </div>
 <button>Submit</button>
-</from>
+</form>
 
